@@ -1,0 +1,509 @@
+cscope 15 $HOME/learnC/tcp_sample -q 0000000060 0000002601
+	@client.c
+
+1 
+	~<sys/ty³s.h
+>
+
+2 
+	~<sys/sock‘.h
+>
+
+3 
+	~<¡dio.h
+>
+
+4 
+	~<¡dlib.h
+>
+
+5 
+	~<”ºo.h
+>
+
+6 
+	~<¡ršg.h
+>
+
+7 
+	~<uni¡d.h
+>
+
+8 
+	~<Ãtš‘/š.h
+>
+
+9 
+	#PORT
+ 4321
+
+	)
+
+10 
+	#BUFFER_SIZE
+ 1024
+
+	)
+
+11 
+	#MAX_QUE_CONN_NM
+ 5
+
+	)
+
+13 
+	$maš
+(
+¬gc
+,* 
+¬gv
+[])
+
+15 
+sockfd
+,
+£ndby‹s
+;
+
+16 
+buf
+[
+BUFFER_SIZE
+];
+
+17 
+ho¡’t
+ * 
+ho¡
+;
+
+18 
+sockaddr_š
+ 
+£rv_addr
+;
+
+19 if(
+¬gc
+<3)
+
+21 
+	`årštf
+(
+¡d”r
+,"USAGE:./client Hotname Text\n");
+
+22 
+	`ex™
+(1);
+
+24 if((
+ho¡
+=
+	`g‘ho¡byÇme
+(
+¬gv
+[1]))==
+NULL
+);
+
+25 
+	`³¼Ü
+("gethostbyname");
+
+26 
+	`ex™
+(1);
+
+27 
+	`mem£t
+(
+buf
+,0,(buf));
+
+28 
+	`¥rštf
+(
+buf
+,"%s",
+¬gv
+[2]);
+
+29 if((
+sockfd
+=
+	`sock‘
+(
+AF_INET
+,
+SOCK_STREAM
+,0))==-1)
+
+31 
+	`³¼Ü
+("socket");
+
+32 
+	`ex™
+(1);
+
+34 
+£rv_addr
+.
+sš_çmžy
+=
+AF_INET
+;
+
+35 
+£rv_addr
+.
+sš_pÜt
+=
+	`htÚs
+(
+PORT
+);
+
+37 
+	`´štf
+("&s\n",
+ho¡
+->
+h_addr
+);
+
+39 
+	`bz”o
+(&(
+£rv_addr
+.
+sš_z”o
+),8);
+
+40 if(
+	`cÚÃù
+(
+sockfd
+,(
+sockaddr
+ *)&
+£rv_addr
+,(sockaddr))==-1)
+
+42 
+	`³¼Ü
+("connect");
+
+43 
+	`ex™
+(1);
+
+45 if((
+£ndby‹s
+=
+	`£nd
+(
+sockfd
+,
+buf
+,
+	`¡¾’
+(buf),0))==-1)
+
+47 
+	`³¼Ü
+("send");
+
+48 
+	`ex™
+(1);
+
+50 
+	`þo£
+(
+sockfd
+);
+
+51 
+	`ex™
+(0);
+
+52 
+	}
+}
+
+	@server.c
+
+1 
+	~<sys/ty³s.h
+>
+
+2 
+	~<sys/sock‘.h
+>
+
+3 
+	~<¡dio.h
+>
+
+4 
+	~<¡dlib.h
+>
+
+5 
+	~<”ºo.h
+>
+
+6 
+	~<¡ršg.h
+>
+
+7 
+	~<uni¡d.h
+>
+
+8 
+	~<Ãtš‘/š.h
+>
+
+9 
+	#PORT
+ 4321
+
+	)
+
+10 
+	#BUFFER_SIZE
+ 1024
+
+	)
+
+11 
+	#MAX_QUE_CONN_NM
+ 5
+
+	)
+
+13 
+	$maš
+()
+
+15 
+sockaddr_š
+ 
+£rv”_sockaddr
+,
+þ›Á_sockaddr
+;
+
+16 
+sš_size
+,
+»cvby‹s
+;
+
+17 
+sockfd
+,
+þ›Á_fd
+;
+
+18 
+buf
+[
+BUFFER_SIZE
+];
+
+19 if((
+sockfd
+ = 
+	`sock‘
+(
+AF_INET
+,
+SOCK_STREAM
+,0))==-1)
+
+21 
+	`³¼Ü
+("socket");
+
+22 
+	`ex™
+(1);
+
+24 
+	`´štf
+("Sock‘ id = %d\n",
+sockfd
+);
+
+25 
+£rv”_sockaddr
+.
+sš_çmžy
+ = 
+AF_INET
+;
+
+26 
+£rv”_sockaddr
+.
+sš_pÜt
+ = 
+	`htÚs
+(
+PORT
+);
+
+27 
+£rv”_sockaddr
+.
+sš_addr
+.
+s_addr
+=
+INADDR_ANY
+;
+
+28 
+i
+=1;
+
+29 
+	`£tsockÝt
+(
+sockfd
+,
+SOL_SOCKET
+,
+SO_REUSEADDR
+,&
+i
+,(i));
+
+30 if(
+	`bšd
+(
+sockfd
+,(
+sockaddr
+ *)&
+£rv”_sockaddr
+,(sockaddr))==-1)
+
+32 
+	`³¼Ü
+("bind");
+
+33 
+	`ex™
+(1);
+
+35 
+	`´štf
+("Bind success!\n");
+
+36 if(
+	`li¡’
+(
+sockfd
+,
+MAX_QUE_CONN_NM
+)==-1)
+
+38 
+	`³¼Ü
+("listen");
+
+39 
+	`ex™
+(1);
+
+41 
+	`´štf
+("Listening...\n");
+
+42 
+sš_size
+=(
+þ›Á_sockaddr
+);
+
+43 if(
+þ›Á_fd
+=
+	`acû±
+(
+sockfd
+,(
+sockaddr
+ *)&
+þ›Á_sockaddr
+,&
+sš_size
+)==-1)
+
+45 
+	`³¼Ü
+("accept");
+
+46 
+	`ex™
+(1);
+
+48 
+	`mem£t
+(
+buf
+,0,(buf));
+
+49 if((
+»cvby‹s
+=
+	`»cv
+(
+þ›Á_fd
+,
+buf
+,
+BUFFER_SIZE
+,0))==-1)
+
+51 
+	`³¼Ü
+("recv");
+
+52 
+	`ex™
+(1);
+
+54 
+	`´štf
+("Reûived‡ mes§ge:%s\n",
+buf
+);
+
+55 
+	`þo£
+(
+sockfd
+);
+
+56 
+	`ex™
+(0);
+
+58 
+	}
+}
+
+	@
+1
+.
+0
+2
+18
+client.c
+server.c
